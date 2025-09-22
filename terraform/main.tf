@@ -21,7 +21,7 @@ variable "key_pair_name" {
   type        = string
 }
 
-resource "aws_instance" "mlops_capstone" {
+resource "aws_instance" "mlops-capstone" {
   ami           = "ami-0dee22c13ea7a9a67" # Amazon Linux 2 AMI in ap-south-1
   instance_type = "t3.micro"
   key_name      = var.key_pair_name
@@ -42,5 +42,5 @@ resource "aws_instance" "mlops_capstone" {
 
 output "instance_public_ip" {
   description = "Public IP of the EC2 instance"
-  value       = aws_instance.mlops_app.public_ip
+  value       = aws_instance.mlops-capstone.public_ip
 }

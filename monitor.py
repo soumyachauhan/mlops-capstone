@@ -1,7 +1,9 @@
 import time
 import smtplib
 from email.message import EmailMessage
-import os
+import os 
+from dotenv import load_dotenv
+load_dotenv()
 
 LOG_FILE = "predictions.log"
 THRESHOLD = 0.2  # 20% error rate
