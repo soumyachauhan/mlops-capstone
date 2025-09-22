@@ -6,6 +6,9 @@ import mlflow
 import mlflow.sklearn
 
 def main():
+
+    mlflow.set_tracking_uri("http://0.0.0.0:5001")
+
     df = pd.read_csv("data/housing.csv")
     X = df[["area"]]
     y = df["price"]
@@ -26,7 +29,9 @@ def main():
 
         print("Model R^2 Score:", score)
 
+
         joblib.dump(model, "model.pkl")
+
 
         mlflow.sklearn.log_model(
             sk_model=model,
