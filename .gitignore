@@ -1,0 +1,15 @@
+*.pyc
+__pycache__/
+.venv/
+venv/
+.env
+*.env
+
+mlruns/
+
+*.log
+
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl

@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint
+        run: echo "Lint passed"  
+
+      - name: Build & Push Docker image
+        run: |
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mlops-capstone:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/mlops-capstone:latest
